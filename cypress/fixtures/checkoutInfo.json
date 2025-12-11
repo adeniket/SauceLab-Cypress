@@ -1,0 +1,14 @@
+{
+    "checkoutInfo":{
+        "firstName": "Quality",
+        "lastName" : "Technies",
+        "zipCode": "SP 123QT"
+    },
+    "InvalidcheckoutInfo":{
+        "firstName": "##",
+        "lastName" : "#$%",
+        "zipCode": "@#$%:#@"
+    }
+}
+
+
