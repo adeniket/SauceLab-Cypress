@@ -5,7 +5,7 @@ import cartPage from "../support/Pages/cartPage"
 import checkoutUtil from "../util/CheckoutInformationUtil"
 import checkoutOverviewPage from "../support/Pages/checkoutOverviewPage"
 import checkoutCompletePage from "../support/Pages/checkoutCompletePage"
-describe('Checkout : Overview', ()=>{
+describe('Checkout : Overview Page', ()=>{
     beforeEach(function(){
         cy.visit("")
         loginUtil.login('valid_user')

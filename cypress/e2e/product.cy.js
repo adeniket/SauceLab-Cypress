@@ -2,7 +2,7 @@ import productPage from "../support/Pages/productPage"
 import loginUtil from "../util/loginUtil"
 import productUtil from "../util/productUtil";
 let actualNames;
-describe('Validate Product Page Information', ()=>{
+describe('Product', ()=>{
     beforeEach(function(){
         cy.visit('')
         loginUtil.login('valid_user')

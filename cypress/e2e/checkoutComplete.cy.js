@@ -2,7 +2,7 @@ import checkoutCompletePage from "../support/Pages/checkoutCompletePage"
 import productPage from "../support/Pages/productPage"
 import loginUtil from "../util/loginUtil"
 
-describe('Checkout Complete Page', ()=>{
+describe('Checkout: Complete Page', ()=>{
     beforeEach(()=>{
         cy.visit('')
         loginUtil.login('valid_user')

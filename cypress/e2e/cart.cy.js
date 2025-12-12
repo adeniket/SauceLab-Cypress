@@ -3,7 +3,7 @@ import loginUtil from "../util/loginUtil"
 import productUtil from "../util/productUtil"
 import productPage from "../support/Pages/productPage"
 import checkoutPage from "../support/Pages/checkoutInformationPage"
-describe('Cart Feature Testing',()=>{
+describe('Cart Page',()=>{
  beforeEach(()=>{
     cy.visit('')
     loginUtil.login('valid_user')

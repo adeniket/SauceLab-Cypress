@@ -1,7 +1,7 @@
 import loginPage from "../support/Pages/loginPage";
 import productPage from "../support/Pages/productPage";
 let data
-describe('Login  spec', () => {
+describe('Login', () => {
   beforeEach(function(){
     cy.visit("");
     
