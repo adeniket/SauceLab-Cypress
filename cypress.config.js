@@ -8,6 +8,8 @@ module.exports = defineConfig({
 
   watchForFileChanges: false,
       pageLoadTimeout: 6000,
+      video: true,
+
   e2e: {
     setupNodeEvents(on, config) {
       allureCypress(on, config, {
@@ -16,7 +18,8 @@ module.exports = defineConfig({
       return config;
       // implement node event listeners here
     },
-          baseUrl : 'https://www.saucedemo.com'
+          baseUrl : 'https://www.saucedemo.com',
+          experimentalPromptCommand: true,
   
   },
 });

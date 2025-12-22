@@ -4,7 +4,7 @@ import productUtil from "../util/productUtil"
 import productPage from "../support/Pages/productPage"
 import checkoutPage from "../support/Pages/checkoutInformationPage"
 describe('Cart Page',()=>{
- beforeEach(()=>{
+ beforeEach(function(){
     cy.visit('')
     loginUtil.login('valid_user')
  })
@@ -75,5 +75,5 @@ describe('Cart Page',()=>{
     checkoutPage.getcheckoutPageTitle().should('exist')
     checkoutPage.getcheckoutPageTitle().invoke('text').should('equal', 'Checkout: Your Information')
   })
-   
+  
 })

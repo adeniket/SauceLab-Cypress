@@ -8,8 +8,8 @@ describe('HamBurger Menu',()=>{
         cy.visit('')
         loginUtil.login('valid_user')
            cy.url().should('include', 'inventory.html')
-
-    })
+  
+})
 it('Verify HamBurger Menu',()=>{
     hamBurgerMenuPage.gethamBurgerMenuPageIcon().should('exist').click()
     hamBurgerMenuPage.gethamBurgerMenuPageAllItems().should('exist').and('have.text','All Items')
@@ -24,16 +24,19 @@ it('Verify User can Logout Successfully',()=>{
     //Assert User is on Login Page
     loginPage.getLoginLogo().should('exist').and('be.visible')
 })
-   it.only('Verify User can Access the "About" Link',()=>{
+   it('Verify User can Access the "About" Link',()=>{
     hamBurgerMenuPage.gethamBurgerMenuPageIcon().click()
-    hamBurgerMenuPage.gethamBurgerMenuPageAbout().should('be.visible').click()
+    hamBurgerMenuPage.gethamBurgerMenuPageAbout().should('be.visible')
+    hamBurgerMenuPage.gethamBurgerMenuPageAbout().click()
     //Assert User is redirected to Sauce Labs website
-    cy.url().should('include', 'saucelabs.com')
-    //Go back to the Product Page for test isolation
-    cy.go('back')
-    productPage.getProductLogo().should('exist')
+    cy.origin('https://saucelabs.com', () => {
+        cy.url().should('include', 'saucelabs.com')
+        cy.title().should('include', 'Sauce Labs')
+    // Assert content is present before leaving
+        cy.get('h1').should('exist')
+        cy.log('User is successfully redirected to Sauce Labs website')
+    })
+           
 
-
-   })
-
+})
 })
