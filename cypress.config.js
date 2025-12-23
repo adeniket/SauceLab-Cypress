@@ -9,8 +9,11 @@ module.exports = defineConfig({
   watchForFileChanges: false,
       pageLoadTimeout: 6000,
       video: true,
+     projectId: "ijpvos",
+
 
   e2e: {
+    experimentalPromptCommand : true,
     setupNodeEvents(on, config) {
       allureCypress(on, config, {
       resultsDir: "allure-reports",
@@ -19,7 +22,6 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
           baseUrl : 'https://www.saucedemo.com',
-          experimentalPromptCommand: true,
   
   },
 });
