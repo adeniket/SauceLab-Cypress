@@ -1,11 +1,11 @@
-My Journey in Cypress Automation
+## My Journey in Cypress Automation
 This document outlines the steps I took to build strong skills in Cypress end‑to‑end testing, advanced reporting, and CI/CD integration. It covers system setup, reporting with Allure, version control with Git, and automated pipelines using GitHub Actions.
 ---
 
 ## Phase 1: Foundation & System Requirements
 Before installing Cypress, I researched the required system setup to ensure smooth performance.
 
-### System Setup
+# System Setup
 1. System Requirements
 According to the Cypress documentation, the following are required:
 
@@ -31,7 +31,7 @@ Supported Browsers
 Chrome, Firefox, Edge, Electron
 
 
-### Installation & First Run
+# Installation & First Run
 2. Installation & First Run
 To start the project, I created a new directory and installed Cypress locally:
 
@@ -48,7 +48,7 @@ npx cypress open
 ## Phase 2: Advanced Reporting with Allure
 Cypress’s default reports are functional but not visually rich. To improve clarity for stakeholders, I integrated Allure Reports, which provide interactive dashboards and single‑file HTML summaries.
 ---
-### Allure Integration Steps
+# Allure Integration Steps
 1. Install the Allure Adapter
 bash
 npm install --save-dev allure-cypress
@@ -119,6 +119,7 @@ To automate testing, I created a GitHub Actions workflow that runs Cypress tests
 
 Workflow File: .github/workflows/main.yml
 yaml
+
 ```
 name: End-to-End Testing
 
@@ -143,7 +144,7 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           ```
----
+          
 This setup uses a CYPRESS_RECORD_KEY stored securely in GitHub Secrets for Cypress Cloud integration.
 
 Reference Documentation
