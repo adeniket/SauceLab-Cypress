@@ -44,10 +44,10 @@ npm install cypress --save-dev
 
 # Open Cypress for the first time
 npx cypress open
----
+
 ## Phase 2: Advanced Reporting with Allure
 Cypress’s default reports are functional but not visually rich. To improve clarity for stakeholders, I integrated Allure Reports, which provide interactive dashboards and single‑file HTML summaries.
----
+
 # Allure Integration Steps
 1. Install the Allure Adapter
 bash
