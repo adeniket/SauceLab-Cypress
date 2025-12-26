@@ -94,7 +94,7 @@ json
 "scripts": {
   "test:headed": "npx cypress run --headed && allure generate --single-file ./allure-results -o ./cypress/reports"
 }
-### Phase 3: Version Control with Git
+## Phase 3: Version Control with Git
 To manage code changes and collaborate effectively, I practiced essential Git commands using Git Bash.
 
 ```
@@ -114,7 +114,7 @@ To manage code changes and collaborate effectively, I practiced essential Git co
 | cd ..                | Moves up one directory                                |
 
 ```
-Phase 4: CI/CD Integration with GitHub Actions
+## Phase 4: CI/CD Integration with GitHub Actions
 To automate testing, I created a GitHub Actions workflow that runs Cypress tests on every push to the github-actions branch.
 
 Workflow File: .github/workflows/main.yml
