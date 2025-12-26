@@ -1,6 +1,6 @@
 ## My Journey in Cypress Automation
 This document outlines the steps I took to build strong skills in Cypress end‑to‑end testing, advanced reporting, and CI/CD integration. It covers system setup, reporting with Allure, version control with Git, and automated pipelines using GitHub Actions.
----
+
 
 ## Phase 1: Foundation & System Requirements
 Before installing Cypress, I researched the required system setup to ensure smooth performance.
