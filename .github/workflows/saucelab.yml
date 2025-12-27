@@ -9,7 +9,7 @@ jobs:
     steps:
         - name: Checkout Repository
           uses: actions/checkout@v3
-        - name: Install depedencies
+        - name: Install dependencies
           run:  npm install
         - name: Run Test
 # The run tests is declared in the package.json file as test: "npx cypress run"
@@ -18,6 +18,9 @@ jobs:
           # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
           # in GitHub repo → Settings → Secrets → Actions
            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        - name: Check Allure Results
+          if: always()
+          run: ls -R allure-results || echo "allure-results not found"
         - name: Generate Allure Report
           if: always()
           run: npx allure-commandline generate allure-results --clean --single-file --output ./cypress/report
