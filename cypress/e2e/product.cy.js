@@ -19,7 +19,7 @@ describe('Product', ()=>{
         productPage.getProductItems().should('have.length.at.least', 2)
        
      })
-     it('Verify Product Hamburger is Clickable and all Links are Visible',()=>{
+     it('Verify Product Hamburger  Menu Functionality',()=>{
         productPage.getProductHamBurgerIcon().should('exist')
         productPage.clickProductHamBurgerIcon()
         // Assert the Product Hamburger is Clickable
@@ -142,7 +142,7 @@ describe('Product', ()=>{
         })
 
     })
-    it('Add items to Cart', ()=>{
+    it('Verify Add to Cart Functionality', ()=>{
         productPage.getProductAddtoCart().should('exist')
         productPage.clickProductAddtoCart()
         //assert that the cart item equals the number of added items
@@ -160,4 +160,50 @@ describe('Product', ()=>{
      productPage.getproductCartRemoveBtn().should('exist')
      productPage.getproductCartRemoveBtn().should('have.length',4)
     })
+    it('Verify that Filter Option Name (A to Z) Works as Expected', function() {
+        // First switch to Z to A to ensure we aren't just testing the default state
+        productPage.selectProductfilterZtoA();
+        
+        // Apply Filter A to Z
+        productPage.selectProductfilterAtoZ();
+        
+        productPage.getProductItemTitleName().then(($elements) => {
+            const finalNames = Array.from($elements, el => el.innerText.trim());
+            const expectedNames = [...finalNames].sort();
+            expect(finalNames, 'Product list should be sorted A to Z').to.deep.equal(expectedNames);
+        });
+    });
+    it('Verify Remove Button Functionality on Product Page', () => {
+        // Add items first
+        productPage.clickProductAddtoCart();
+        productPage.getproductAddtoCartCount().should('have.text', '3');
+        
+        // Remove one item
+        productPage.getproductCartRemoveBtn().first().click();
+        
+        // Verify count decreases
+        productPage.getproductAddtoCartCount().should('have.text', '2');
+    });
+    it('Verify Navigation to Product Details Page', () => {
+        productPage.getProductItemTitleName().first().click();
+        cy.url().should('include', '/inventory-item.html');
+        cy.get('[data-test="back-to-products"]').should('be.visible').click();
+        cy.url().should('include', '/inventory.html');
+    });
+    it('Verify Reset App State Functionality', () => {
+        // Add items to cart
+        productPage.clickProductAddtoCart();
+        productPage.getproductAddtoCartCount().should('exist');
+        // Open Menu and Reset
+        productPage.clickProductHamBurgerIcon();
+        productPage.getHamBurgerResetAppState().click();
+        // Verify Cart is empty
+        productPage.getproductAddtoCartCount().should('not.exist');
+        productPage.clickHamBurgerCloseBtn();
+    });
+    it('Verify Footer Social Media Links', () => {
+        productPage.getSocialTwitter().should('be.visible').and('have.attr', 'href', 'https://twitter.com/saucelabs');
+        productPage.getSocialFacebook().should('be.visible').and('have.attr', 'href', 'https://www.facebook.com/saucelabs');
+        productPage.getSocialLinkedin().should('be.visible').and('have.attr', 'href', 'https://www.linkedin.com/company/sauce-labs/');
+    });
 })

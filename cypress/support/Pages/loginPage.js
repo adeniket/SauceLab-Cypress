@@ -25,6 +25,9 @@ class loginPage{
     enterUsername(username){
         this.loginElement.usernameField().type(username)
     }
+    enterPassword(password){
+        this.loginElement.passwordField().type(password)
+    }
    clickLogin(){
     this.loginElement.loginBtn().click();
    }

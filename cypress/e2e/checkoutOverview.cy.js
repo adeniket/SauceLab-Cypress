@@ -5,6 +5,7 @@ import cartPage from "../support/Pages/cartPage"
 import checkoutUtil from "../util/CheckoutInformationUtil"
 import checkoutOverviewPage from "../support/Pages/checkoutOverviewPage"
 import checkoutCompletePage from "../support/Pages/checkoutCompletePage"
+import productPage from "../support/Pages/productPage"  
 describe('Checkout : Overview Page', ()=>{
     beforeEach(function(){
         cy.visit("")
@@ -93,16 +94,75 @@ describe('Checkout : Overview Page', ()=>{
     it('Verify User reached the "Checkout: Complete" Page',()=>{
         //Custom Metthod
         cy.completeCheckoutOrder();
+        checkoutCompletePage.getcheckoutCompletePageTitle().should('exist')
+    })
+    it('Verify Cancel Button Redirects to Inventory Page', () => {
+        productUtil.product('first_Order')
+        cartPage.clickCartLink()
+        cartPage.clickCartCheckoutLink()
+        checkoutUtil.checkout('validUserDetails')
+        checkoutInformationPage.clickContinueLink()
+        checkoutOverviewPage.clickcheckoutOverviewCancelLink()
+        cy.url().should('include', '/inventory.html')
+        productPage.getProductLogo().should('have.text', 'Products')
+    })
+    it('Verify Navigation to Item Details from Overview Page', () => {
+        productUtil.product('first_Order')
+        cartPage.clickCartLink()
+        cartPage.clickCartCheckoutLink()
+        checkoutUtil.checkout('validUserDetails')
+        checkoutInformationPage.clickContinueLink()
+        checkoutOverviewPage.getcheckoutOverviewOrderItem().first().click()
+        cy.url().should('include', '/inventory-item.html')
+        checkoutOverviewPage.getbackToProducts().should('be.visible')
+        checkoutOverviewPage.getbackToProducts().click()
+        cy.url().should('include', '/inventory.html')
+        productPage.getProductLogo().should('have.text', 'Products')
+    
+    })
+    it('Verify Tax Rate is calculated correctly (approx 8%)', () => {
+        productUtil.product('first_Order')
+        cartPage.clickCartLink()
+        cartPage.clickCartCheckoutLink()
+        checkoutUtil.checkout('validUserDetails')
+        checkoutInformationPage.clickContinueLink()
+        
+        checkoutOverviewPage.getcheckoutOverviewItemTotallabel().invoke('text').then((text) => {
+            const subTotal = parseFloat(text.replace('Item total:', '').replace('$', '').trim())
+            
+            checkoutOverviewPage.getcheckoutOverviewTaxLabel().invoke('text').then((taxText) => {
+                const tax = parseFloat(taxText.replace('Tax:', '').replace('$', '').trim())
+                
+                // Sauce Demo tax rate is 8%
+                const expectedTax = parseFloat((subTotal * 0.08).toFixed(2))
+                
+                expect(tax, 'Tax should be 8% of Item Total').to.equal(expectedTax)
+            })
+        })
+    })
+    it('Verify Cart Badge matches the number of items in the Overview list', () => {
+        productUtil.product('first_Order')
+        cartPage.clickCartLink()
+        cartPage.clickCartCheckoutLink()
+        checkoutUtil.checkout('validUserDetails')
+        checkoutInformationPage.clickContinueLink()
 
-        // Normal declaration
-    //     productUtil.product('first_Order')
-    //     cartPage.clickCartLink()
-    //   cartPage.clickCartCheckoutLink()
-    //   checkoutUtil.checkout('validUserDetails')
-    //   checkoutInformationPage.clickContinueLink()
-    //   checkoutOverviewPage.clickcheckoutOverviewFinishLink()
-    //   //Assert
-         checkoutCompletePage.getcheckoutCompletePageTitle().should('exist')
+        checkoutOverviewPage.getcheckoutOverviewOrderItem().then(($items) => {
+            const itemCount = $items.length
+            productPage.getproductAddtoCartCount().invoke('text').should('eq', itemCount.toString())
+        })
+    })
+   
+    it('Verify Overview Page retains state after reload', () => {
+        productUtil.product('first_Order')
+        cartPage.clickCartLink()
+        cartPage.clickCartCheckoutLink()
+        checkoutUtil.checkout('validUserDetails')
+        checkoutInformationPage.clickContinueLink()
+        
+        cy.reload()
+        checkoutOverviewPage.getcheckoutOverviewTitle().should('have.text', 'Checkout: Overview')
+        checkoutOverviewPage.getcheckoutOverviewOrderItem().should('exist')
     })
 
 })

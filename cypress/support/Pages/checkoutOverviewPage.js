@@ -15,9 +15,10 @@ class checkoutOverview {
         checkoutOverviewItemTotallabel : ()=> cy.get('[data-test="subtotal-label"]'),
         checkoutOverviewTaxLabel : ()=> cy.get('[data-test="tax-label"]'),
         checkoutOverviewTotalLabel : ()=> cy.get('[data-test="total-label"]'),
-        checkoutOverviewCancelLink : ()=> cy.get('[data-test="cancel"]'),
+        checkoutOverviewCancelLink : ()=> cy.get('[data-test="cancel"]'), 
         checkoutOverviewFinishLink : ()=> cy.get('[data-test="finish"]'),
-        checkoutOverviewPriceItem : ()=> cy.get('[data-test="inventory-item-price"]')
+        checkoutOverviewPriceItem : ()=> cy.get('[data-test="inventory-item-price"]'),
+        backToProducts : ()=> cy.get('[data-test="back-to-products"]')  
     }
     //Initiate method to interact with element
     getcheckoutOverviewFinishLink(){
@@ -86,6 +87,12 @@ class checkoutOverview {
     }
     clickcheckoutOverviewFinishLink(){
         this.elements.checkoutOverviewFinishLink().click()
+    }
+    clickcheckoutOverviewCancelLink(){
+        this.elements.checkoutOverviewCancelLink().click()
+    }
+    getbackToProducts(){
+        return this.elements.backToProducts()
     }
 }
 export default new checkoutOverview()

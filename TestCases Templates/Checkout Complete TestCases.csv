@@ -1,0 +1,50 @@
+TC ID,Test Title,Description,Pre-conditions,Test Data,Steps,Expected,Result
+TC_001,Verify Checkout : Overview Features,"Validate that all static elements, labels, and payment/shipping information are displayed correctly on the Checkout Overview page.","1. The browser is launched.
+2. The user navigates to the application Base URL.
+3. The user logs in successfully with a valid account (valid_user).",,"1. Navigate to the Cart page.
+2. Click ""Checkout"".
+3. Enter valid user details and click ""Continue"".
+4. Verify the presence and text of the following elements:
+ a. Page Title (""Checkout: Overview"")
+b. QTY Label (""QTY"")
+c. Description Label (""Description"")
+d. Payment Information Label & Value (""SauceCard #31337"")
+e. Shipping Information Label & Value (""Free Pony Express Delivery!"")
+f. Price Total Label
+g. Item Total Label (Initial state ""$0"" if empty, or specific value)
+h. Tax Label
+i. Total Label","1. All labels and information text match the expected static values.
+",
+TC_002,Validate that the Total Price of Order is Correctly Calculated,"Validate the mathematical logic for the order total. It ensures the sum of individual item prices equals the Subtotal, and Subtotal + Tax equals the Final Total.",,,"1. Add a product (first_Order) to the cart.
+2. Proceed to the Checkout Overview page.
+3. Subtotal Calculation: Iterate through all item prices in the list, sum them up, and compare with the displayed ""Item total"".
+4. Total Calculation: Add the displayed ""Tax"" amount to the calculated Subtotal.
+5. Compare the result with the displayed ""Total"" amount.","1. Displayed Subtotal matches the sum of item prices.
+2. Displayed Total matches Subtotal + Tax.",
+TC_003,"Verify User reached the ""Checkout: Complete"" Page","Validate the flow from Overview to Completion using the ""Finish"" button ",,,"1. Perform a complete checkout flow (Add item -> Cart -> Checkout Info -> Overview).
+2. Click the ""Finish"" button.
+","1. The Checkout Complete page title is visible.
+",
+TC_004,Verify Cancel Button Redirects to Inventory Page," Validate that clicking ""Cancel"" on the Overview page abandons the checkout and returns the user to the inventory.",,,"1. Add a product and proceed to the Checkout Overview page.
+2. Click the ""Cancel"" button.","1. The URL contains /inventory.html.
+2. The Product page title ""Products"" is visible.",
+TC_005, Verify Navigation to Item Details from Overview Page,"Validate that clicking a product name in the overview list navigates to its details page, and the user can return.",,,"1. Add a product and proceed to the Checkout Overview page.
+2. Click on the name of the first product in the list.
+3. Verify URL contains /inventory-item.html.
+4. Click the ""Back to products"" button.","1. User is redirected to the Inventory page (/inventory.html).
+",
+TC_006, Verify Tax Rate is calculated correctly (approx 8%),Validate the business logic for tax calculation.,,,"1. Add a product and proceed to the Checkout Overview page.
+2. Capture the ""Item total"" value.
+3. Capture the ""Tax"" value.
+4. Calculate 8% of the Item total.","1. The displayed Tax equals the calculated 8% value (fixed to 2 decimal places).
+",
+TC_007,Verify Cart Badge matches the number of items in the Overview list,Validate consistency between the shopping cart badge count and the actual items listed on the overview page.,,,"1. Add a product and proceed to the Checkout Overview page.
+2. Count the number of item rows in the overview list.
+3. Get the text from the shopping cart badge.
+",1. The badge count matches the number of items in the list.,
+TC_008,Verify Overview Page retains state after reload,Validate that the checkout session persists if the page is refreshed.,,,"1. Add a product and proceed to the Checkout Overview page.
+2. Reload the browser page.","1. The page title remains ""Checkout: Overview"".
+2. The order items are still present in the list.",
+,,,,,,,
+,,,,,,,
+,,,,,,,

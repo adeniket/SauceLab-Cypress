@@ -6,7 +6,7 @@ class hamBurgerMenuPage{
         hamBurgerMenuPageLogout : ()=>cy.get ('[data-test="logout-sidebar-link"]'),
         hamBurgerMenuPageResetAppState: ()=> cy.get('[data-test="reset-sidebar-link"]'),
         hamBurgerMenuPageExtPage : ()=>cy.get('[class*="MuiBox-root"]'),
-        
+        hamBurgerMenuPageCloseBtn : ()=> cy.get('#react-burger-cross-btn')
     }
     //initiate method to interact with element
     gethamBurgerMenuPageIcon(){
@@ -27,6 +27,9 @@ class hamBurgerMenuPage{
     }
     gethamBurgerMenuPageExtPage(){
         return this.elements.hamBurgerMenuPageExtPage()
+    }
+    gethamBurgerMenuPageCloseBtn(){
+        return this.elements.hamBurgerMenuPageCloseBtn()
     }
 }
 

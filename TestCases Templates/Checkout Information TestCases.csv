@@ -1,0 +1,68 @@
+TC ID,Test Title,Description,Pre-conditions,Test Data,Steps,Expected,Result
+TC_001,Verify All Features on the Checkout Page are Visible,Validate that the UI elements on the Checkout Information page are displayed correctly with expected placeholders and text.,"2. The browser is launched.
+2. The user navigates to the application Base URL.
+3. The user logs in successfully with a valid account (valid_user).
+4. Test data is loaded from checkoutInfo fixture.",,"1. Navigate to the Cart page.
+2. Click the ""Checkout"" button.
+3. Verify the Checkout container exists.
+4. Verify the page title is ""Checkout: Your Information"".
+5. Verify ""First Name"" input placeholder.
+6. Verify ""Last Name"" input placeholder.
+7. Verify ""Zip/Postal Code"" input placeholder.
+8. Verify ""Cancel"" button text.
+9. Verify ""Continue"" button value.
+","1. All elements are visible.
+2. Placeholders match ""First Name"", ""Last Name"", ""Zip/Postal Code"".
+3. Buttons are labeled ""Cancel"" and ""Continue"".",
+TC_002,"Verify User Cannot Access the ""Checkout: Overview"" Page Without Filling All Details",Validate mandatory field error messages are displayed sequentially when fields are missing.,,Refer to checkoutInfo fixture file,"1. Navigate to the Checkout page.
+2. Scenario A: Leave all fields empty and click ""Continue"".
+Check: Error message ""Error: First Name is required"" is displayed.
+3. Close the error message.
+4. Scenario B: Enter First Name only and click ""Continue"".
+Check: Error message ""Error: Last Name is required"" is displayed.
+5. Close the error message.
+6. Scenario C: Enter Zip Code (keeping First Name filled, Last Name empty) and click ""Continue"".
+Check: Error message ""Error: Last Name is required"" is displayed.
+","1. The user remains on the Checkout Information page.
+2. Specific error messages appear based on the missing field.",
+TC_003,Verify User is Unable to Proceed with Invalid Details, Validate system behavior when invalid data formats are entered (based on InvalidcheckoutInfo data).,,"invalidData.firstName
+invalidData.lastName
+invalidData.zipCode","1. Navigate to the Checkout page.
+2. Enter invalid First Name, Last Name, and Zip Code.
+3. Click ""Continue""","1. An error message containing the text ""Invalid"" is displayed.
+",
+TC_004,"Verify User can Proceed to ""Checkout: Overview"" Page with Valid Details",Validate successful navigation to the Overview page when valid data is provided.,,"validData.firstName
+validData.lastName
+validData.zipCode","1. Ensure a product  is added to the cart.
+2. Navigate to the Checkout page.
+3. Enter valid First Name, Last Name, and Zip Code 
+4. Click ""Continue"".","1. User is redirected to the Checkout Overview page.
+2. The Checkout Overview page title is visible.",
+TC_005,Verify Cancel Button Redirects to Cart Page,Validate that the Cancel button navigates the user back to the Cart page.,,,"1. Navigate to the Checkout page.
+2. Click the ""Cancel"" button.","1. The URL contains /cart.html.
+2. The page title ""Your Cart"" is displayed.",
+TC_006,Verify Error Message When Zip/Postal Code is Missing, Specific validation ensuring the Zip Code is required when Name fields are populated.,,"validData.firstName
+validData.lastName
+","1. Navigate to the Checkout page.
+2. Enter a valid First Name.
+3. Enter a valid Last Name.
+4. Leave Zip/Postal Code empty.
+5. Click ""Continue"".","1. Error message ""Error: Postal Code is required"" is displayed.",
+TC_007,Verify Visual Error Indicators on Validation Failure,Validate that input fields visually indicate errors (CSS classes and icons) upon validation failure.,,,"1. Navigate to the Checkout page.
+2. Click ""Continue"" (triggering validation errors).","1. First Name, Last Name, and Zip Code fields have the error CSS class (turning them red).
+2. Three error icons (svg.error_icon) are visible on the form.",
+TC_008, Verify Form Fields are Cleared When Navigating Away and Returning,Validate that form data is not persisted if the user cancels and returns to the checkout page.,,"validData.firstName
+validData.lastName
+validData.zipCode","1. Click the Cart icon to navigate to the Cart page.
+2. Click the Checkout button to navigate to the ""Checkout: Your Information"" page.
+3. Enter a valid First Name into the First Name field.
+4. Enter a valid Last Name into the Last Name field.
+5. Enter a valid Zip/Postal Code into the Zip Code field.
+6. Click the Continue button (User is redirected to ""Checkout: Overview"" page).
+7. Click the Cancel button on the Overview page.
+8. Verify the user is redirected to the Inventory page (/inventory.html).
+9. Click the Cart icon again.
+10. Click the Checkout button again to return to the ""Checkout: Your Information"" page.
+11. Inspect the values of the First Name, Last Name, and Zip/Postal Code fields.","1. The First Name field is empty.
+2. The Last Name field is empty.
+3. The Zip/Postal Code field is empty. (This confirms that sensitive user data is not persisted in the form fields after the flow is cancelled and restarted).",

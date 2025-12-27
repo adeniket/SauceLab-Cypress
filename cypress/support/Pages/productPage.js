@@ -23,7 +23,11 @@ class productPage{
         productItemPrice:()=> cy.get('[data-test="inventory-item-price"]'),
         productAddtoCart: ()=> cy.get('[class*="btn_inventory"]'),
         productAddtoCartCount : ()=> cy.get('[data-test="shopping-cart-badge"]'),
-        productCartRemoveBtn : ()=> cy.get('[class*="btn_secondary"]')
+        productCartRemoveBtn : ()=> cy.get('[class*="btn_secondary"]'),
+        hamBurgerCloseBtn: () => cy.get('#react-burger-cross-btn'),
+        socialTwitter: () => cy.get('.social_twitter a'),
+        socialFacebook: () => cy.get('.social_facebook a'),
+        socialLinkedin: () => cy.get('.social_linkedin a')
     }
 
     getProductLogo(){
@@ -114,6 +118,18 @@ class productPage{
     }
     getproductCartRemoveBtn(){
         return this.elements.productCartRemoveBtn()
+    }
+    clickHamBurgerCloseBtn(){
+        this.elements.hamBurgerCloseBtn().click()
+    }
+    getSocialTwitter(){
+        return this.elements.socialTwitter()
+    }
+    getSocialFacebook(){
+        return this.elements.socialFacebook()
+    }
+    getSocialLinkedin(){
+        return this.elements.socialLinkedin()
     }
 }
 

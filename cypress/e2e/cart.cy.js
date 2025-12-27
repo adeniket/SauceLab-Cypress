@@ -60,13 +60,13 @@ describe('Cart Page',()=>{
       }
      })
   })
-  it('Verify that "Continue to Shopping " is Working',()=>{
+  it('Verify that "Continue to Shopping " Functionality',()=>{
     cartPage.clickCartLink()
     cartPage.clickContinueShoppingLink()
     //Assert you are on the product page to contunie shopping
     productPage.getProductLogo().should('exist')
   })
-  it('Verify Checkout Link on the cart worked as expected',()=>{
+  it('Verify Checkout Link Functionality',()=>{
     productUtil.product('first_Order')
     cartPage.clickCartLink()
     cartPage.getCartCheckoutLink().should('exist')
@@ -75,5 +75,40 @@ describe('Cart Page',()=>{
     checkoutPage.getcheckoutPageTitle().should('exist')
     checkoutPage.getcheckoutPageTitle().invoke('text').should('equal', 'Checkout: Your Information')
   })
-  
+  it('Verify Cart Retains Items After Logout and Login', function() {
+    productUtil.product('first_Order')
+    cartPage.clickCartLink()
+    cartPage.getcartOrderList().should('have.length', 3)
+
+    productPage.clickProductHamBurgerIcon()
+    productPage.getHamBurgerLogout().click()
+
+    loginUtil.login('valid_user')
+    cartPage.clickCartLink()
+    cartPage.getcartOrderList().should('have.length', 3)
+  })
+  it('Verify Navigation to Item Details from Cart', () => {
+    productUtil.product('first_Order')
+    cartPage.clickCartLink()
+    cy.get('[data-test="inventory-item-name"]').first().click()
+    cy.url().should('include', '/inventory-item.html')
+    cy.get('[data-test="back-to-products"]').should('be.visible')
+  })
+ 
+it('Verify "Continue Shopping" button returns to product page', () => {
+    cartPage.clickCartLink()
+    cartPage.clickContinueShoppingLink()
+    cy.url().should('include', '/inventory.html')
+    productPage.getProductLogo().should('be.visible')
+
+   
+  })
+
+  it('Verify "Checkout" button navigates to checkout information page', () => {
+    productUtil.product('first_Order')
+    cartPage.clickCartLink()
+    cartPage.clickCartCheckoutLink()
+    cy.url().should('include', '/checkout-step-one.html')
+    checkoutPage.getcheckoutPageTitle().should('have.text', 'Checkout: Your Information')
+  })
 })

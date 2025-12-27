@@ -3,9 +3,16 @@
          "validUsername": "standard_user",
          "validPassword": "secret_sauce",
          "invalidUsername": "Invalid_user",
-         "invalidPassword": "passwordWrong"
+         "invalidPassword": "passwordWrong",
+         "emptyUsername": null
+        
+    },
+    "lockedUser": {
+        "lockedUsername": "locked_out_user",
+        "lockedPassword": "secret_sauce"
         
     }
+
    
 
 }

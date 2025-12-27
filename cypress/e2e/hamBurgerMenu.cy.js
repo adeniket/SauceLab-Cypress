@@ -2,6 +2,7 @@ import hamBurgerMenuPage from "../support/Pages/hamBurgerMenuPage"
 import loginPage from "../support/Pages/loginPage"
 import productPage from "../support/Pages/productPage"
 import loginUtil from "../util/loginUtil"
+import cartPage from "../support/Pages/cartPage"
 
 describe('HamBurger Menu',()=>{
     beforeEach(()=>{
@@ -39,4 +40,25 @@ it('Verify User can Logout Successfully',()=>{
            
 
 })
+    it('Verify "Reset App State" clears the cart', () => {
+        productPage.clickProductAddtoCart()
+        productPage.getproductAddtoCartCount().should('exist')
+        hamBurgerMenuPage.gethamBurgerMenuPageIcon().click()
+        hamBurgerMenuPage.gethamBurgerMenuPageResetAppState().click()
+        productPage.getproductAddtoCartCount().should('not.exist')
+        hamBurgerMenuPage.gethamBurgerMenuPageCloseBtn().click()
+    })
+    it('Verify "All Items" Link navigates to Inventory Page', () => {
+        cartPage.clickCartLink()
+        cy.url().should('include', '/cart.html')
+        hamBurgerMenuPage.gethamBurgerMenuPageIcon().click()
+        hamBurgerMenuPage.gethamBurgerMenuPageAllItems().click()
+        cy.url().should('include', '/inventory.html')
+    })
+    it('Verify Hamburger Menu can be closed', () => {
+        hamBurgerMenuPage.gethamBurgerMenuPageIcon().click()
+        hamBurgerMenuPage.gethamBurgerMenuPageAllItems().should('be.visible')
+        hamBurgerMenuPage.gethamBurgerMenuPageCloseBtn().click()
+        hamBurgerMenuPage.gethamBurgerMenuPageAllItems().should('not.be.visible')
+    })
 })

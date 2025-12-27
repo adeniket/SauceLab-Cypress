@@ -1,0 +1,44 @@
+TC ID,Test Title,Description,Pre-conditions,Test Data,Steps,Expected,Result
+TC_001,Verify Cart Page Information,Validate that the static elements and labels on the Cart page are displayed correctly.,"1. The browser is launched.
+2. The user navigates to the application Base URL.
+3. The user logs in successfully with a valid account (valid_user).",,"1. Click the Cart link icon.
+2. Verify the page title text.
+3. Verify the column labels (""Description"", ""QTY"").
+4. Verify the presence and text of ""Continue Shopping"" and ""Checkout"" buttons.","1. Page title is ""Your Cart"".
+2. Labels ""Description"" and ""QTY"" are visible.
+3. ""Continue Shopping"" and ""Checkout"" buttons are displayed with correct text.
+4. Cart container elements exist.",
+TC_002,Verify Added Items are Visible in Cart, Validate that items added from the inventory page appear in the cart list.,,,"1. Add a product (first_Order) to the cart from the inventory page.
+2. Click the Cart link icon.
+3. Check the list of items in the cart.","1. The cart order list is not empty.
+",
+TC_003,Verify Order Can Be Removed Successfully From Cart,Validate that clicking the remove button on a cart item decreases the total item count.,,,"1. Add multiple products (logic implies 3 items) to the cart.
+2. Navigate to the Cart page.
+3. Capture the initial count of items in the cart.
+4. Click the ""Remove"" button on one of the items.
+5. Capture the new count of items.","1. The new item count is exactly 1 less than the initial count (e.g., reduces from 3 to 2).
+",
+TC_004, Verify 'Continue Shopping' Functionality,"Validate that the ""Continue Shopping"" button redirects the user back to the product inventory page.",,,"1. Navigate to the Cart page.
+2. Click the ""Continue Shopping"" button.","1. The Product Page logo is visible (indicating successful redirection).
+",
+TC_005,Verify Checkout Link Functionality,"Validate that the ""Checkout"" button redirects the user to the Checkout Information page.",,,"1. Add a product to the cart.
+2. Navigate to the Cart page.
+3. Click the ""Checkout"" button.","1. The Checkout page title is visible.
+2. The title text is ""Checkout: Your Information"".",
+TC_006,Verify Cart Retains Items After Logout and Login,Validate that the cart state persists across user sessions.,,,"1. Add products to the cart.
+2. Verify the cart contains 3 items.
+3. Open the Hamburger menu and click ""Logout"".
+4. Log in again with the same valid credentials.
+5. Navigate to the Cart page.","1. The cart still contains 3 items.
+",
+TC_007,Verify Navigation to Item Details from Cart,Validate that clicking an item's name in the cart navigates to its specific details page.,,,"1. Add a product to the cart.
+2. Navigate to the Cart page.
+3. Click on the name of the first item in the list.","1. The URL contains /inventory-item.html.
+2. The ""Back to products"" button is visible.",
+TC_008, Verify 'Continue Shopping' Button Returns to Product Page (URL Check),"Validate specific URL redirection for the ""Continue Shopping"" button.",,,"1. Navigate to the Cart page.
+2. Click the ""Continue Shopping"" button.","1. The URL contains /inventory.html.
+2. The Product Page logo is visible.",
+TC_009,Verify 'Checkout' Button Navigates to Checkout Information Page (URL Check),"Validate specific URL redirection for the ""Checkout"" button.",,,"1. Add a product to the cart.
+2. Navigate to the Cart page.
+3. Click the ""Checkout"" button.","1. The URL contains /checkout-step-one.html.
+2. The page title is ""Checkout: Your Information"".",

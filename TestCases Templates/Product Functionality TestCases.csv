@@ -1,0 +1,66 @@
+TC ID,Test Title,Description,Pre-conditions,Test Data,Steps,Expected,Result
+TC_001, Verify Features on Product Page,Validate that the essential elements of the product page are loaded correctly.,"1. The browser is launched.
+2. The user navigates to the application Base URL.
+3. The user logs in successfully with a valid account (valid_user).
+4. The user is redirected to the Product/Inventory page.",,"1.Observe the product items on the page.
+2. Observe the price elements of the products.","1. Product items are present in the DOM.
+2. Product prices are displayed and contain the $ currency symbol.",
+TC_002,Verify Product List is Not Empty,Validate that the product container loads and displays a sufficient number of products.,,,"1. Check the product container element.
+2. Count the number of product items displayed.","1. The product container is not empty.
+2. There are at least 2 product items displayed on the page.",
+TC_003, Verify Product Hamburger Menu Functionality,Validate that the hamburger menu is accessible and contains the correct links.,,,"1. Click the Hamburger menu icon.
+2. Verify the text of the menu items.","1. The menu opens successfully.
+2. The menu contains the following links with exact text:
+""All Items""
+""About""
+""Logout""
+""Reset App State""",
+TC_004,Verify Filter Features Options are Available,Validate that the sort/filter dropdown is visible and contains the correct sorting options.,,,"1. Locate the Product Filter dropdown.
+2. Verify the text options within the dropdown.","1. The filter dropdown is visible.
+2. The dropdown includes the options: ""Name (A to Z)"", ""Name (Z to A)"", ""Price (low to high)"", and ""Price (high to low)"".",
+TC_005,Verify Filter Option 'Name (Z to A)' Works as Expected,"Validate that selecting ""Name (Z to A)"" correctly sorts the products in descending alphabetical order.",,,"1. Capture the initial list of product names (Default is A to Z).
+2. Select ""Name (Z to A)"" from the filter dropdown.
+3. Capture the new list of product names.",1. The product list on the UI matches the expected descending alphabetical order.,
+TC_006,Verify Filter Option 'Price (low to high)' Works as Expected,"Validate that selecting ""Price (low to high)"" correctly sorts the products by price in ascending order.",,,"1. Capture the initial list of product prices.
+2. Select ""Price (low to high)"" from the filter dropdown.
+3. Capture the new list of product prices.
+4. Parse the prices (remove $) and compare the UI order against a mathematically sorted ascending list.",1. The product list on the UI matches the expected ascending price order.,
+TC_007,Verify Filter Option 'Price (high to low)' Works as Expected,"Validate that selecting ""Price (high to low)"" correctly sorts the products by price in descending order.",,,"1. Capture the initial list of product prices.
+2. Select ""Price (high to low)"" from the filter dropdown.
+3. Capture the new list of product prices.
+4. Parse the prices (remove $) and compare the UI order against a mathematically sorted descending list.","1. The product list on the UI matches the expected descending price order.
+",
+TC_008, Verify Add to Cart Functionality,Validate that adding items to the cart updates the cart badge and toggles the button state.,,,"1. Click the ""Add to Cart"" button for specific products (Logic implies adding 3 items).
+2. Observe the Cart badge count.
+3. Observe the ""Remove"" buttons on the product items.","1. The Cart badge displays the number '3'.
+2. There are 3 ""Remove"" buttons visible on the page.",
+TC_009,Verify Cart Updates with Extra Items,Validate that adding an additional item updates the existing cart count rather than overwriting it.,,,"1. Perform a setup action to ensure initial state.
+2. Click the ""Add to Cart"" button for an additional item.
+3. Observe the Cart badge count.","1. The Cart badge count increments to '4'.
+2. There are 4 ""Remove"" buttons visible on the page.",
+TC_010,Verify Filter Option 'Name (A to Z)' Works as Expected,"Validate that selecting ""Name (A to Z)"" correctly sorts the products in ascending alphabetical order.",,,"1. Select ""Name (Z to A)"" first to ensure the list is not in default state.
+2. Select ""Name (A to Z)"" from the filter dropdown.
+3. Capture the list of product names.
+Compare the list against a mathematically sorted ascending list.","1. The product list on the UI matches the expected ascending alphabetical order.
+",
+TC_011,Verify Remove Button Functionality on Product Page,Validate that clicking the Remove button on the inventory page decreases the cart count.,,,"1. Add items to the cart (ensure count is 3).
+2. Click the ""Remove"" button on the first product item.
+3. Observe the Cart badge count.","1. The Cart badge count decreases from '3' to '2'.
+",
+TC_012,Verify Navigation to Product Details Page,alidate navigation between the inventory list and the individual product details page.,,,"1. Click on the title of the first product.
+2. Verify the URL contains /inventory-item.html.
+3. Click the ""Back to products"" button.
+4. Verify the URL contains /inventory.html.","1. User is successfully redirected to the details page and back to the inventory page.
+",
+TC_013,Verify Reset App State Functionality,"Validate that ""Reset App State"" clears the current session data (e.g., cart contents).",,,"1. Add items to the cart so the badge is visible.
+2. Open the Hamburger menu.
+3. Click ""Reset App State"".
+4. Observe the Cart badge.
+5. Close the Hamburger menu.","1. The Cart badge is removed (indicating the cart is empty).
+",
+TC_014,Verify Footer Social Media Links,Validate that the social media links in the footer are present and point to the correct URLs.,,,"1. Scroll to the footer.
+2. Inspect the Twitter link.
+3. Inspect the Facebook link.
+4. Inspect the LinkedIn link.","1. Twitter link points to https://twitter.com/saucelabs.
+2. Facebook link points to https://www.facebook.com/saucelabs.
+3. LinkedIn link points to https://www.linkedin.com/company/sauce-labs/.",

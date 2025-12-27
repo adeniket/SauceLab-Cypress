@@ -1,0 +1,35 @@
+TC ID,Test Title,Description,Pre-conditions,Test Data,Steps,Expected,Result
+TC_001,Verify the Features on the Checkout Complete Page,"Validate that the static elements, success messages, and navigation buttons are displayed correctly on the Checkout Complete page.","1. The browser is launched.
+2. The user navigates to the application Base URL.
+3. The user logs in successfully with a valid account (valid_user).",,"1. Perform a complete checkout flow (Add item -> Cart -> Checkout Info -> Overview -> Finish).
+2. Verify the Page Title text.
+3. Verify the ""Pony Express"" logo is visible.
+4. Verify the Success Header text.
+5. Verify the Success Body text.
+6. Verify the ""Back Home"" button text.","1. Page Title is ""Checkout: Complete!"".
+2. Logo is visible.
+3. Success Header is ""Thank you for your order!"".
+4. Success Text is ""Your order has been dispatched, and will arrive just as fast as the pony can get there!"".
+5. Button text is ""Back Home"".",
+TC_002,"Verify that ""BackHome"" Link redirected back to the Product Page","Validate that the ""Back Home"" button successfully redirects the user to the Inventory/Product page.",,,"1. Perform a complete checkout flow.
+2. Click the ""Back Home"" button.
+3. Verify the Product Page logo is present.","1. User is redirected to the Product page.
+",
+TC_003,Verify Cart is Empty After Checkout Completion,Validate that the shopping cart is cleared (reset to 0 items) after a successful transaction.,,,"1. Perform a complete checkout flow.
+2. Click the ""Back Home"" button to return to the inventory.
+3. Inspect the shopping cart badge.","1. The shopping cart badge count does not exist (indicating the cart is empty).
+",
+TC_004,Verify Page URL is Correct,"Validate that the user is on the correct endpoint for the completion page.
+",,,"1. Perform a complete checkout flow.
+2. Inspect the browser URL.","1. The URL contains /checkout-complete.html.
+",
+TC_005,Verify Hamburger Menu is accessible on Checkout Complete Page,"Validate that the global navigation menu is available on the final screen.
+",,,"1. Perform a complete checkout flow.
+2. Inspect the Hamburger Menu icon.
+","1. The Hamburger Menu icon is visible.
+",
+TC_006,Verify Footer Social Media Links are visible,"Validate that the footer elements are present on the completion page layout.
+",,,"1. Perform a complete checkout flow.
+2. Inspect the footer area for social media icons.","1. Twitter icon is visible.
+2. Facebook icon is visible.
+3. LinkedIn icon is visible.",

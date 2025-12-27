@@ -20,10 +20,31 @@ describe('Checkout: Complete Page', ()=>{
     })
     it('Verify that "BackHome " Link redirected back to the Product Page',()=>{
                 // Custom Method that successfully checkout orders
-                cy.completeCheckoutOrder()
-                checkoutCompletePage.getcheckoutCompletePageBackHOmeLink().click()
+                 cy.completeCheckoutOrder()
+                 checkoutCompletePage.getcheckoutCompletePageBackHOmeLink().click()
                 // Asset that redirection to Product Page
-                productPage.getProductLogo().should('exist')
+                 productPage.getProductLogo().should('exist')
 
+    })
+    it('Verify Cart is Empty After Checkout Completion', () => {
+        // Custom Method that successfully checkout orders
+          cy.completeCheckoutOrder()
+        // The cart badge should not exist after a successful checkout
+        checkoutCompletePage.getcheckoutCompletePageBackHOmeLink().click()
+        productPage.getproductAddtoCartCount().should('not.exist')
+    })
+    it('Verify Page URL is Correct', () => {
+        cy.completeCheckoutOrder()
+        cy.url().should('include', '/checkout-complete.html')
+    })
+    it('Verify Hamburger Menu is accessible on Checkout Complete Page', () => {
+        cy.completeCheckoutOrder()
+        productPage.getProductHamBurgerIcon().should('be.visible')
+    })
+    it('Verify Footer Social Media Links are visible', () => {
+        cy.completeCheckoutOrder()
+        productPage.getSocialTwitter().should('be.visible')
+        productPage.getSocialFacebook().should('be.visible')
+        productPage.getSocialLinkedin().should('be.visible')
     })
 })

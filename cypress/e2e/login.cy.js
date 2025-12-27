@@ -64,5 +64,16 @@ it('Verify User is Unable to Login with Valid Username and Empty Password Field'
   // })
 })
 
-  
+  it('Verify User is Unable to Login with Empty Username and Valid Password', function(){
+    loginPage.enterPassword(this.loginInfo.userData.validPassword)
+    loginPage.clickLogin()
+    loginPage.getLoginErrorMsg().should('exist')
+    loginPage.getLoginErrorMsg().should('be.visible').and('contain', 'Username is required')
+  })
+
+  it('Verify User is Unable to Login as a Locked Out User', function(){
+    loginPage.login(this.loginInfo.lockedUser.lockedUsername, this.loginInfo.lockedUser.lockedPassword)
+    loginPage.getLoginErrorMsg().should('exist')
+    loginPage.getLoginErrorMsg().should('be.visible').and('contain', 'Sorry, this user has been locked out.')
+  })
 })

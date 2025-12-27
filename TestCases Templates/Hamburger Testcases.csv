@@ -1,0 +1,35 @@
+TC ID,Test Title,Description,Pre-conditions,Test Data,Steps,Expected,Result
+TC_001,Verify Hamburger Menu Elements,Validate that the hamburger menu opens and displays all expected navigation links with the correct text.,"1. The browser is launched.
+2. The user navigates to the application Base URL.
+3. The user logs in successfully with a valid account (valid_user).
+4. The user is on the Inventory page (/inventory.html).",,"1. Click the Hamburger Menu icon.
+2. Verify the ""All Items"" link is visible and has the correct text.
+3. Verify the ""About"" link is visible and has the correct text.
+4. Verify the ""Logout"" link is visible and has the correct text.
+5. Verify the ""Reset App State"" link is visible and has the correct text.","1. The menu opens.
+2. All four links are present and labeled correctly.",
+TC_002,Verify User can Logout Successfully,"Validate that clicking the ""Logout"" link successfully logs the user out and redirects them to the login page.",,,"1. Click the Hamburger Menu icon.
+2. Click the ""Logout"" link.
+3. Observe the current page.
+","1. The user is redirected to the Login page.
+2. The Login Logo is visible.",
+TC_003,"Verify User can Access the ""About"" Link","Validate that clicking the ""About"" link redirects the user to the external Sauce Labs website.",,,"1. Click the Hamburger Menu icon.
+2. Click the ""About"" link.
+3. Observe the URL and Page Title.","1. The user is redirected to https://saucelabs.com.
+2. The URL contains saucelabs.com.
+3. The page title includes ""Sauce Labs"".",
+TC_004," Verify ""Reset App State"" Clears the Cart"," Validate that the ""Reset App State"" option clears any items currently in the shopping cart.",,,,"1. Add items to the cart (ensure the cart badge is visible).
+2. Click the Hamburger Menu icon.
+3. Click the ""Reset App State"" link.
+4. Observe the shopping cart badge.","1. The shopping cart badge is removed (indicating the cart is empty).
+"
+TC_005,"Verify ""All Items"" Link Navigates to Inventory Page","Validate that the ""All Items"" link redirects the user back to the product inventory page from a different page (e.g., Cart).",,,,"1. Navigate to the Cart page (/cart.html).
+2. Click the Hamburger Menu icon.
+3. Click the ""All Items"" link.
+4. Observe the URL.","1. The user is redirected to the Inventory page.
+2. The URL contains /inventory.html."
+TC_006, Verify Hamburger Menu Can Be Closed,Validate that the hamburger menu can be closed using the 'X' button.,,,,"1. Click the Hamburger Menu icon to open it.
+2. Verify the menu items are visible.
+3. Click the Close ('X') button inside the menu.
+4. Observe the visibility of the menu items.","1. The menu closes.
+2. The menu items (e.g., ""All Items"") are no longer visible."

@@ -12,10 +12,13 @@ jobs:
         - name: Install depedencies
           run:  npm install
         - name: Run Test
+# The run tests is declared in the package.json file as test: "npx cypress run"
           run: npm test
+        - name: Generate Allure Report
+          if: always()
+          run: npx allure-commandline generate allure-results --clean --single-file --output ./cypress/report
+        
           env:
           # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
           # in GitHub repo → Settings → Secrets → Actions
            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-
-
