@@ -15,8 +15,8 @@ jobs:
 # The run tests is declared in the package.json file as test: "npx cypress run"
           run: npm test
           env:
-          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-          # in GitHub repo → Settings → Secrets → Actions
+# For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
+# in GitHub repo → Settings → Secrets → Actions
            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         - name: Check Allure Results
           if: always()
