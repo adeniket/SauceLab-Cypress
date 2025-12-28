@@ -70,8 +70,20 @@ The framework employs a mix of assertion styles to ensure robustness:
 *   **Logic-Based Assertions:**
     Performing JavaScript calculations within tests to verify business logic.
     *   *Example:* In `checkoutOverview.cy.js`, the script parses price strings, calculates the expected tax (8%), and asserts it against the displayed tax value.
+## 8. Dynamic UI Element Selection Strategy
+ To ensure test stability and avoid brittleness associated with static text (like specific product names that might change), the framework implements a dynamic selection strategy for list items. 
+* Approach: Instead of targeting elements by specific text (e.g., cy.contains('Sauce Labs Backpack')), the framework targets the collection of elements and selects them based on their index/position.
+* Implementation:
+In productPage.js, methods like clickProductAddtoCart utilize Cypress traversal commands (.first(), .eq(index), .last()) to interact with multiple items in the inventory list dynamically. 
+```javascript
+// Example from productPage.js
+  
+    productAddtoCart().first().click() // Adds first item
+    productAddtoCart().eq(1).click()   // Adds second item
+    productAddtoCart().last().click()  // Adds last item
+```
 
-## 8. Implementing Custom Methods to Eliminate Repetition
+## 9. Implementing Custom Methods to Eliminate Repetition
 To adhere to the **DRY (Don't Repeat Yourself)** principle, reusable workflows are abstracted into Custom Commands.
 
 *   **Implementation:**
@@ -93,25 +105,115 @@ Cypress.Commands.add('completeCheckoutOrder', () => {
 })
 ```
 
-## 9. Installation and Setup Instructions
+# 10. Installation and Setup Instructions
 Follow these steps to set up the project locally:
 
-1.  **Prerequisites:** Ensure Node.js (v18+) is installed.
-2.  **Clone the Repository:**
-    ```bash
-    git clone <repository-url>
-    cd "SauceLab Cypress"
-    ```
-3.  **Install Dependencies:**
+i.  **Prerequisites:** 
+ According to the Cypress documentation, the following are required:
+```
+Software
+Node.js: 18.x, 20.x, 22.x or later
+
+Package Manager: npm, yarn, or pnpm
+
+Supported Operating Systems:
+
+macOS 10.15+ (Intel or Apple Silicon)
+
+Linux: Ubuntu 20.04+, Fedora 38+, Debian 11+
+
+Windows 10/11 (64‑bit)
+
+Hardware
+Minimum 2 CPUs (helps with parallel browser execution)
+
+4GB RAM minimum (8GB recommended for larger test suites)
+
+Supported Browsers
+Chrome, Firefox, Edge, Electron
+```
+
+ii. **Installation & First Run**
+To start the project, I created a new directory and installed Cypress locally:
+```
+bash
+# Initialize project
+npm init -y
+```
+iii. **Install Dependencies:**
     ```bash
     npm install
     ```
-4.  **Install Allure Commandline (Global):**
-    ```bash
-    npm install -g allure-commandline
-    ```
+iv. **Install Cypress**
+```
+#Install Cypress
+npm install cypress --save-dev
+```
+v. **Open Cypress for the first time**
+```
+npx cypress open
+```
+# Advanced Reporting with Allure
+Cypress’s default reports are functional but not visually rich. To improve clarity for stakeholders, I integrated Allure Reports, which provide interactive dashboards and single‑file HTML summaries.
 
-## 10. How to Run Tests
+# Allure Integration Steps
+i. **Install the Allure Adapter**
+```
+bash
+npm install --save-dev allure-cypress
+```
+ii. **Add in Configure Cypress (cypress.config.js)**
+```
+const {allureCypress } = require ("allure-cypress/reporter");
+
+module.exports = {
+  e2e: {
+    setupNodeEvents(on, config) {
+      allureCypress(on, config);
+      return config;
+    },
+  },
+};
+```
+iii. **Add Support File (cypress/support/e2e.js)**
+```
+import "allure-cypress";
+```
+iv. **Install the Allure CLI Tool**
+This tool processes raw test results into readable reports:
+```
+bash
+npm i -g allure-commandline
+```
+v. **Generating Reports**
+
+To generate reports, run the following commands:
+```
+bash
+allure serve allure-results
+```
+vi. ** To Generate a Single‑File HTML Report**
+```
+bash
+allure generate --single-file --report-name \"SauceLab Cypress Automation Report\" ./allure-results --output ./cypress/report --clean
+```
+
+   *  *./singlefilereport* →  Output folder for the standalone HTML file
+   *  *--report-name* →  Name of the report
+   *  *./allure-results* →  Folder containing raw results
+   *  *./cypress/report* →  Output folder(directory) for the standalone HTML file
+   *  *--clean* →  Removes all previous results
+
+
+vii. **Automation Script (package.json)**
+I added a script to run tests and generate the report automatically in headless mode:
+```
+json
+"scripts": {
+  "test:headed": "npx cypress run --headed && allure generate --single-file ./allure-results -o ./cypress/reports"
+}
+```
+## 11. How to Run Tests
 
 ### Cypress GUI Mode
 To run tests interactively with the Test Runner:
@@ -127,7 +229,7 @@ npm test
 ```
 *(Note: This runs `npx cypress run` as defined in `package.json`)*
 
-## 11. Test Coverage Summary
+## 12. Test Coverage Summary
 The current suite covers the following critical paths:
 *   ✅ **Authentication:** Login (Positive/Negative), Logout.
 *   ✅ **Inventory:** Product display, Sorting logic, Image visibility.
@@ -135,7 +237,7 @@ The current suite covers the following critical paths:
 *   ✅ **Checkout:** Form validation, Price calculation, Order placement.
 *   ✅ **Navigation:** Sidebar menu, Back buttons, Continue shopping.
 
-## 12. CI/CD Integration Explanation
+## 13. CI/CD Integration Explanation
 Continuous Integration is implemented using **GitHub Actions**. The pipeline ensures that every code push to the `github-actions` branch triggers the automated test suite.
 
 *   **Trigger:** Push to `github-actions` branch.
@@ -147,7 +249,7 @@ Continuous Integration is implemented using **GitHub Actions**. The pipeline ens
     4.  Generate Allure Report.
     5.  Upload Report Artifacts.
 
-## 13. GitHub Actions Workflow Overview
+## 14. GitHub Actions Workflow Overview
 The workflow file (`.github/workflows/saucelab.yml`) defines the automation pipeline.
 
 **Key Components:**
@@ -162,4 +264,21 @@ The workflow file (`.github/workflows/saucelab.yml`) defines the automation pipe
 - name: Generate Allure Report
   if: always()
   run: npx allure-commandline generate allure-results --clean --single-file --output ./cypress/report
+```
+
+# Common Git Commands
+
+| Command               | Description                                          |
+|----------------------|-------------------------------------------------------|
+| git init             | Creates a git initialization                          |
+| touch .gitignore     | Adds a file to exclude items like `node_modules`      |
+| git status           | Shows modified or untracked files                     |
+| git log              | Displays commit history                               |
+| git branch           | Lists branches                                        |
+| git checkout -b      | Creates and switches to a new branch                  |
+| git commit -m "msg"  | Saves staged changes with a message                   |
+| git remote add origin| Links local repo to GitHub                            |
+| git push -u origin   | Pushes changes and sets upstream                      |
+| cd ..                | Moves up one directory                                |
+
 ```
