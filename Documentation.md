@@ -154,7 +154,7 @@ v. **Open Cypress for the first time**
 npx cypress open
 ```
 # Advanced Reporting with Allure
-Cypress’s default reports are functional but not visually rich. To improve clarity for stakeholders, I integrated Allure Reports, which provide interactive dashboards and single‑file HTML summaries.
+ To improve clarity for stakeholders, I integrated Allure Reports, which provide interactive dashboards and single‑file HTML summaries.
 
 # Allure Integration Steps
 i. **Install the Allure Adapter**

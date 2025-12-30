@@ -3,3 +3,4 @@ allure-reports
 SauceLab-TestCases.xls
 cypress\videos
 cypress\screenshots
+allure-results

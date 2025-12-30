@@ -131,6 +131,7 @@ class productPage{
     getSocialLinkedin(){
         return this.elements.socialLinkedin()
     }
+    
 }
 
 export default new productPage()
