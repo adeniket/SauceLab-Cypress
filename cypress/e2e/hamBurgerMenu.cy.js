@@ -28,7 +28,7 @@ it('Verify User can Logout Successfully',()=>{
    it('Verify User can Access the "About" Link',()=>{
     hamBurgerMenuPage.gethamBurgerMenuPageIcon().click()
     hamBurgerMenuPage.gethamBurgerMenuPageAbout().should('be.visible')
-    hamBurgerMenuPage.gethamBurgerMenuPageAbout().click()
+    hamBurgerMenuPage.gethamBurgerMenuPageAbout().invoke('removeAttr', 'target').click()
     //Assert User is redirected to Sauce Labs website
     cy.origin('https://saucelabs.com', () => {
         cy.url().should('include', 'saucelabs.com')

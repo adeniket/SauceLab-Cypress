@@ -1,8 +1,7 @@
 node_modules
-allure-reports
 SauceLab-TestCases.xls
 cypress\videos
 cypress\screenshots
 allure-results
 Documentation.md
-CONTRIBUTING.md
+CONTRIBUTING
