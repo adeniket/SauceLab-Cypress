@@ -51,7 +51,7 @@ npx cypress open
 # Allure Integration Steps
 i. **Install the Allure Adapter**
 ```
-bash
+pwsh
 npm install --save-dev allure-cypress
 ```
 ii. **Add in Configure Cypress (cypress.config.js)**
@@ -61,7 +61,9 @@ const {allureCypress } = require ("allure-cypress/reporter");
 module.exports = {
   e2e: {
     setupNodeEvents(on, config) {
-      allureCypress(on, config);
+      allureCypress(on, config, {
+      resultsDir: "allure-results",
+      });
       return config;
     },
   },
@@ -74,19 +76,19 @@ import "allure-cypress";
 iv. **Install the Allure CLI Tool**
 This tool processes raw test results into readable reports:
 ```
-bash
+pwsh
 npm i -g allure-commandline
 ```
 v. **Generating Reports**
 
 To generate reports, run the following commands:
 ```
-bash
+pwsh
 allure serve allure-results
 ```
 vi. ** To Generate a Single‑File HTML Report**
 ```
-bash
+pwsh
 allure generate --single-file --report-name \"SauceLab Cypress Automation Report\" ./allure-results --output ./cypress/report --clean
 ```
 
