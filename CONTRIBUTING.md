@@ -13,14 +13,19 @@ Ensure you have the following installed on your local machine:
 ### Installation
 1. Clone the repository:
    ```bash
+   
    git clone <repository-url>
    ```
 2. Navigate to the project directory:
-   ```bash
+   ```
+   pwsh
+
    cd "SauceLab Cypress"
    ```
 3. Install dependencies:
-   ```bash
+   ```
+   pwsh
+
    npm install
    ```
 
@@ -89,20 +94,26 @@ Avoid hardcoding test data. Use JSON files in `cypress/fixtures/`.
 
 ### Interactive Mode (GUI)
 To open the Cypress Test Runner:
-```bash
+```
+pwsh
+
 npx cypress open
 ```
 
 ### Headless Mode
 To run all tests in the terminal:
-```bash
+```
+pwsh
+
 npm test
 ```
 
 ## Reporting
 This project uses **Allure** for reporting. To generate reports locally:
 
-```bash
+```
+pwsh
+
 npx allure-commandline generate allure-results --clean --single-file --output ./cypress/report
 ```
 

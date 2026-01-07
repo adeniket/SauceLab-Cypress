@@ -136,21 +136,22 @@ Chrome, Firefox, Edge, Electron
 ii. **Installation & First Run**
 To start the project, I created a new directory and installed Cypress locally:
 ```
-bash
+pwsh
 # Initialize project
 npm init -y
 ```
 iii. **Install Dependencies:**
-    ```bash
+    ```pwsh
     npm install
     ```
 iv. **Install Cypress**
 ```
-#Install Cypress
+pwsh
 npm install cypress --save-dev
 ```
 v. **Open Cypress for the first time**
 ```
+pwsh
 npx cypress open
 ```
 # Advanced Reporting with Allure
@@ -159,7 +160,7 @@ npx cypress open
 # Allure Integration Steps
 i. **Install the Allure Adapter**
 ```
-bash
+pwsh
 npm install --save-dev allure-cypress
 ```
 ii. **Add in Configure Cypress (cypress.config.js)**
@@ -169,7 +170,9 @@ const {allureCypress } = require ("allure-cypress/reporter");
 module.exports = {
   e2e: {
     setupNodeEvents(on, config) {
-      allureCypress(on, config);
+      allureCypress(on, config, {
+      resultsDir: "allure-results",
+      });
       return config;
     },
   },
@@ -182,19 +185,19 @@ import "allure-cypress";
 iv. **Install the Allure CLI Tool**
 This tool processes raw test results into readable reports:
 ```
-bash
+pwsh
 npm i -g allure-commandline
 ```
 v. **Generating Reports**
 
 To generate reports, run the following commands:
 ```
-bash
+pwsh
 allure serve allure-results
 ```
 vi. ** To Generate a Single‑File HTML Report**
 ```
-bash
+pwsh
 allure generate --single-file --report-name \"SauceLab Cypress Automation Report\" ./allure-results --output ./cypress/report --clean
 ```
 
@@ -217,14 +220,16 @@ json
 
 ### Cypress GUI Mode
 To run tests interactively with the Test Runner:
-```bash
+```
+pwsh
 npx cypress open
 ```
 *Select "E2E Testing" and choose a browser (Chrome/Electron).*
 
 ### Headless Mode
 To run all tests in the terminal (headless mode):
-```bash
+```
+pwsh
 npm test
 ```
 *(Note: This runs `npx cypress run` as defined in `package.json`)*
@@ -280,5 +285,8 @@ The workflow file (`.github/workflows/saucelab.yml`) defines the automation pipe
 | git remote add origin| Links local repo to GitHub                            |
 | git push -u origin   | Pushes changes and sets upstream                      |
 | cd ..                | Moves up one directory                                |
+| touch                | To create a new file                                  |
+| rm -rf               | To remove a directory                                 |
+| git clone            | To clone a repository                                 |
 
 ```
